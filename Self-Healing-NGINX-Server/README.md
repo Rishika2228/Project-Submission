@@ -1,6 +1,3 @@
-Yep — here is the **entire README in one single code block** so you can copy it all at once and paste directly into `README.md`.
-
-```markdown
 # 🔄 Self-Healing NGINX Server
 
 > A DevOps project that detects an NGINX failure, triggers an alert, and automatically recovers the server without manual intervention.
@@ -171,14 +168,6 @@ The project intentionally uses a small EC2 instance because the main purpose is 
 
 ## EC2 Instance
 
-<!-- ================================================= -->
-<!-- 📸 SCREENSHOT SPACE                               -->
-<!-- Put your AWS EC2 screenshot here                  -->
-<!-- File: screenshots/01-ec2-instance.png             -->
-<!-- ================================================= -->
-
-![AWS EC2 Instance](screenshots/01-ec2-instance.png)
-
 *AWS EC2 instance running the self-healing server.*
 
 ---
@@ -274,14 +263,6 @@ This distinction is important.
 It isn't enough for the NGINX process to simply exist. The monitoring system should also know whether the web server is actually responding to HTTP requests.
 
 ## NGINX Health Check
-
-<!-- ================================================= -->
-<!-- 📸 SCREENSHOT SPACE                               -->
-<!-- Put your NGINX healthy screenshot here            -->
-<!-- File: screenshots/02-nginx-healthy.png            -->
-<!-- ================================================= -->
-
-![NGINX Healthy](screenshots/02-nginx-healthy.png)
 
 *NGINX running successfully and returning HTTP 200.*
 
@@ -542,14 +523,6 @@ Active: active (running)
 ```
 
 ## Flask Webhook Service
-
-<!-- ================================================= -->
-<!-- 📸 SCREENSHOT SPACE                               -->
-<!-- Put your Flask systemd screenshot here            -->
-<!-- File: screenshots/03-webhook-service.png          -->
-<!-- ================================================= -->
-
-![Flask Webhook Service](screenshots/03-webhook-service.png)
 
 *Flask webhook running continuously as a systemd service.*
 
@@ -848,13 +821,9 @@ The complete process looks like this:
 
 The EC2 instance hosting the project is running successfully.
 
-<!-- ===================================================== -->
-<!-- 📸 DROP SCREENSHOT HERE                                -->
-<!-- File: screenshots/01-ec2-instance.png                  -->
-<!-- ===================================================== -->
 
-![AWS EC2 Instance](<img width="959" height="194" alt="Screenshot 2026-09-21 175025" src="https://github.com/user-attachments/assets/1a153fbb-417d-4d50-a3df-b79158caeded" />
-)
+<img width="959" height="194" alt="instance" src="https://github.com/user-attachments/assets/df6394b3-2ec3-4825-8d86-db0ef870fba8" />
+
 
 **What this screenshot shows:**  
 The AWS EC2 instance is running and available. This is the machine where the complete self-healing infrastructure has been deployed.
@@ -881,13 +850,8 @@ returned:
 HTTP/1.1 200 OK
 ```
 
-<!-- ===================================================== -->
-<!-- 📸 DROP SCREENSHOT HERE                                -->
-<!-- File: screenshots/02-nginx-healthy.png                 -->
-<!-- ===================================================== -->
+<img width="959" height="402" alt="Screenshot 2026-09-28 210120" src="https://github.com/user-attachments/assets/09996b07-fccc-4241-80c6-9f66ac4cf129" />
 
-![NGINX Healthy](<img width="959" height="422" alt="Screenshot 2026-09-21 174933" src="https://github.com/user-attachments/assets/93478e06-1b87-400d-9397-ebe0ddd2ae64" />
-)
 
 **What this screenshot shows:**  
 NGINX is running normally and the local HTTP health check is returning `200 OK`.
@@ -904,13 +868,8 @@ sudo systemctl stop nginx
 
 The monitoring system then detects that the HTTP endpoint is unavailable.
 
-<!-- ===================================================== -->
-<!-- 📸 DROP SCREENSHOT HERE                                -->
-<!-- File: screenshots/03-nginx-failure.png                 -->
-<!-- ===================================================== -->
+<img width="959" height="446" alt="Screenshot 2026-09-19 213328" src="https://github.com/user-attachments/assets/4c6ef758-0c28-46c1-8a6b-1cf03158218d" />
 
-![NGINX Failure Detection](<img width="959" height="446" alt="Screenshot 2026-09-19 213328" src="https://github.com/user-attachments/assets/f960f628-4645-4d90-a656-284ac5c5e6ce" />
-)
 
 **What this screenshot shows:**  
 The failure was intentionally triggered and the monitoring/recovery pipeline started processing the alert.
@@ -931,13 +890,7 @@ The service reports:
 Active: active (running)
 ```
 
-<!-- ===================================================== -->
-<!-- 📸 DROP SCREENSHOT HERE                                -->
-<!-- File: screenshots/04-webhook-service.png               -->
-<!-- ===================================================== -->
-
-![Flask Webhook](<img width="953" height="341" alt="Screenshot 2026-09-21 170024" src="https://github.com/user-attachments/assets/775432ef-c13b-4fc4-98ff-9db94a355ba8" />
-)
+<img width="953" height="341" alt="Screenshot 2026-09-21 170024" src="https://github.com/user-attachments/assets/67d09fcc-2432-4cc2-aee2-5405d78e3b57" />
 
 **What this screenshot shows:**  
 The Flask webhook is running continuously in the background and is ready to receive Alertmanager notifications.
@@ -966,49 +919,13 @@ and:
 POST /alert HTTP/1.1" 200
 ```
 
-<!-- ===================================================== -->
-<!-- 📸 DROP SCREENSHOT HERE                                -->
-<!-- File: screenshots/05-automatic-recovery.png             -->
-<!-- ===================================================== -->
+<img width="959" height="422" alt="Screenshot 2026-09-21 174933" src="https://github.com/user-attachments/assets/2e20ae88-a24b-487b-8cf2-4b9ec6aaac2b" />
 
-![Automatic Recovery](<img width="959" height="422" alt="Screenshot 2026-09-21 174933" src="https://github.com/user-attachments/assets/5949d338-4d1d-468f-b059-c37454b084eb" />
-)
 
 **What this screenshot shows:**  
 The alert reached Flask, Ansible restarted NGINX, and the recovery playbook successfully verified that NGINX was returning HTTP 200.
 
 ---
-
-# 🖼️ Screenshot Folder Structure
-
-Keep the screenshots inside a folder named:
-
-```text
-screenshots/
-```
-
-Recommended structure:
-
-```text
-self-healing-server/
-│
-├── screenshots/
-│   ├── 01-ec2-instance.png
-│   ├── 02-nginx-healthy.png
-│   ├── 03-nginx-failure.png
-│   ├── 04-webhook-service.png
-│   └── 05-automatic-recovery.png
-│
-├── webhook.py
-├── inventory
-├── restart_nginx.yml
-└── README.md
-```
-
-You can use different filenames if you want. Just make sure the filename in the README matches the actual image filename.
-
----
-
 # ✅ Final Test Result
 
 The final end-to-end test successfully demonstrated the complete recovery workflow.
@@ -1276,3 +1193,4 @@ This project gave me practical experience with monitoring, alerting, Linux servi
 
 **Result:** Successfully tested end-to-end self-healing workflow.
 ```
+This project is made for learning purpose by author "Rishika"
